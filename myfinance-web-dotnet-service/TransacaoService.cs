@@ -1,4 +1,5 @@
 
+using Microsoft.EntityFrameworkCore;
 using myfinance_web_dotnet_domain.Entities;
 using myfinance_web_dotnet_infra;
 using myfinance_web_dotnet_service.Interfaces;
@@ -40,13 +41,13 @@ namespace myfinance_web_dotnet_service
 
         public List<Transacao> ListarRegistros()
         {
-            var dbSet = _dbContext.Transacao;
+            var dbSet = _dbContext.Transacao.Include(x => x.PlanoConta);
             return dbSet.ToList();
         }
 
         public Transacao RetornarRegistro(int Id)
         {
-            return _dbContext.Transacao.Where( x => x.Id == Id).First();
+            return _dbContext.Transacao.Where( x => x.Id == Id ).First();
         }
     }
 }
