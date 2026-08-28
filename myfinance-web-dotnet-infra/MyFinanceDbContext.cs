@@ -19,5 +19,4 @@ public class MyFinanceDbContext : DbContext
         var connectionString =_configuration.GetConnectionString("Database");
         optionsBuilder.UseSqlServer(connectionString);
     }
-
 }
